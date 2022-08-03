@@ -1,7 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import download_csv
 import streamlit as st
+import pandas as pd
 
 
 # function to use requests.post to make an API call to the subgraph url
@@ -74,7 +76,7 @@ def token_extract():
         result = run_query(query, variables)
         list_of_values = result['data']['token']
 
-        col1, col2 = st.columns((2,2))
+        col1, col2 = st.columns((5,3))
         
         with col1:
                 st.write("Token Details")
@@ -92,12 +94,15 @@ def token_extract():
                 st.markdown('#')
                 st.markdown('#')
                 st.write(list_of_values['sales'])
+        download_csv(result['data']['token']
+)
     else:
+        st.subheader("Random Token For Showcase")
         variables = {'address': '0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258', 'tokenId': '60809' }
         result = run_query(query, variables)
         list_of_values = result['data']['token']
 
-        col1, col2 = st.columns((2,2))
+        col1, col2 = st.columns((5,3))
         
         with col1:
                 st.write("Token Details")

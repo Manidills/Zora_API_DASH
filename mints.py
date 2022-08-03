@@ -1,7 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import download_csv
 import streamlit as st
+import pandas as pd
 
 
 # function to use requests.post to make an API call to the subgraph url
@@ -80,7 +82,7 @@ def mint_extract():
         list_of_values = result['data']['mints']['nodes']
         it = iter(list_of_values)
 
-        col1, col2 = st.columns((2,2))
+        col1, col2 = st.columns((5,3))
 
         for i in it:
             with col1:
@@ -90,15 +92,45 @@ def mint_extract():
                     st.markdown("#")
                     st.markdown("#")
                     if i['token']['image']['url'].startswith("ipfs") or i['token']['image']['url'].startswith('https://exodia'):
-                        st.image('https://opensea.io/static/images/logos/opensea.svg', width=300)
+                        st.image('https://opensea.io/static/images/logos/opensea.svg', width=250)
                     else:
-                        st.image(i['token']['image']['url'], width=300)
+                        st.image(i['token']['image']['url'], width=250)
                 except:
-                    st.image('https://opensea.io/static/images/logos/opensea.svg', width=300)
+                    st.image('https://opensea.io/static/images/logos/opensea.svg', width=250)
             with col2:
                 st.write('Minted NFT Details')
                 st.markdown("#")
                 st.markdown("#")
                 st.write(i['mint'])   
+        download_csv(result['data']['mints']['nodes'])
+    else:
+        st.subheader("Random Address Minting details")
+        variables = {'minterAddresses': '0xaa697E815F85Dd8C46b14EddfCB07f4A351d25BB', 'limit': 3,  'sortKey': 'TIME', }
+        result = run_query(query, variables)
+        list_of_values = result['data']['mints']['nodes']
+        it = iter(list_of_values)
+
+        col1, col2 = st.columns((5,3))
+
+        for i in it:
+            with col1:
+                st.write('NFT')
+                try:
+                    st.markdown("#")
+                    st.markdown("#")
+                    st.markdown("#")
+                    if i['token']['image']['url'].startswith("ipfs") or i['token']['image']['url'].startswith('https://exodia'):
+                        st.image('https://opensea.io/static/images/logos/opensea.svg', width=250)
+                    else:
+                        st.image(i['token']['image']['url'], width=250)
+                except:
+                    st.image('https://opensea.io/static/images/logos/opensea.svg', width=250)
+            with col2:
+                st.write('Minted NFT Details')
+                st.markdown("#")
+                st.markdown("#")
+                st.markdown("#")
+                st.write(i['mint'])   
+       
        
         

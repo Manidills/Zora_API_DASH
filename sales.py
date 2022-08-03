@@ -1,8 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import download_csv
 import streamlit as st
-
+import pandas as pd
 
 # function to use requests.post to make an API call to the subgraph url
 def run_query(query, variables):
@@ -97,15 +98,43 @@ def sales_extract():
     if submit:
         variables = {'collectionAddresses': Collection_address, 'limit': val, 'saleTypes': Sales_type, 'sortKey': sort_by, }
         result = run_query(query, variables)
+        if result['data']['sales']['nodes'] is None:
+            st.info("sorry no data")
         list_of_values = result['data']['sales']['nodes']
         it = iter(list_of_values)
 
-        col1, col2 = st.columns((2,2))
+        col1, col2 = st.columns((5,3))
         for i in it:
             with col1:
                 st.write("Token Details")
                 st.markdown('#')
-                st.write(i['token']['collectionName'])
+                st.success(i['token']['collectionName'])
+                st.write(i['token']['owner'])
+                st.write(i['token']['image']['url'])
+                try:
+                    st.image(i['token']['image']['url'], width=400)
+                except:
+                    pass
+                
+            with col2:
+                st.write("Sale Details")
+                st.markdown('#')
+                st.markdown('#')
+                st.markdown('#')
+                st.write(i['sale'])
+        download_csv(result['data']['sales']['nodes'])
+    else:
+        variables = {'collectionAddresses': '0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258', 'limit': 3, 'saleTypes': 'OPENSEA_BUNDLE_SALE', 'sortKey': 'TIME' }
+        result = run_query(query, variables)
+        list_of_values = result['data']['sales']['nodes']
+        it = iter(list_of_values)
+
+        col1, col2 = st.columns((5,3))
+        for i in it:
+            with col1:
+                st.write("Token Details")
+                st.markdown('#')
+                st.warning(i['token']['collectionName'])
                 st.write(i['token']['owner'])
                 st.write(i['token']['image']['url'])
                 try:

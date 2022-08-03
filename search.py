@@ -1,7 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import download_csv
 import streamlit as st
+import pandas as pd
 
 
 # function to use requests.post to make an API call to the subgraph url
@@ -89,6 +91,7 @@ def search_extract():
             with col2:
                 st.markdown("#")
                 st.write(next(it))
+        download_csv(result['data']['search']['nodes'])
     else:
         st.subheader('Random Collection Search')
         variables = {'text': 'punk', 'limit': 10 }

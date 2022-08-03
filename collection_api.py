@@ -1,7 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import convert_df
 import streamlit as st
+import pandas as pd
 
 
 # function to use requests.post to make an API call to the subgraph url
@@ -85,18 +87,30 @@ query = '''
 def collection_extract():
     with st.form("form1", clear_on_submit=False): 
         Collection_address = st.text_input('Contract_address')
-
         submit = st.form_submit_button("Submit")
+
+            
 
     if submit:
       variables = {'collectionAddresses': Collection_address}
       result = run_query(query, variables)
       st.subheader("Metadata For The Collection")
       st.write(result['data']['collections']['nodes'])
+
+    
+      df = pd.DataFrame(result['data']['collections']['nodes'])
+      csv = convert_df(df)
+      download = st.download_button(
+                "Press to Download",
+                csv,
+                "file.csv",
+                "text/csv",
+                key='download-csv'
+              )
     else:
       num_value = 10
 
-      st.subheader("Top 10 Collection By Created")
+      st.subheader("Top 10 Collection")
       st.markdown("#")
 
       col1, col2 = st.columns((2,2)) 
@@ -126,7 +140,7 @@ def collection_extract():
           st.write(next(it))
 
 
-
+   
 
 
     

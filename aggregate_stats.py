@@ -1,7 +1,9 @@
 from pprint import pprint
 from typing import Collection
 import requests
+from common_1 import download_csv
 import streamlit as st
+import pandas as pd
 
 
 # function to use requests.post to make an API call to the subgraph url
@@ -73,7 +75,7 @@ def aggreagte_stats_extract():
     if submit:
         variables = {'collectionAddresses': Collection_address, 'limit': val}
         result = run_query(query, variables)
-        st.subheader("Metadata For The Collection")
+       
         
         col1, col2, col3 = st.columns(3)
         col1.metric("floorPrice", result['data']['aggregateStat']['floorPrice'])
@@ -95,12 +97,54 @@ def aggreagte_stats_extract():
         it = iter(list_of_values)
 
         col1, col2 = st.columns((2,2))
+        
         for i in it:
             with col1:
                 st.markdown("#")
                 st.write(i)
             with col2:
+              try:
                 st.markdown("#")
                 st.write(next(it))
+              except:
+                pass
+        download_csv(result['data']['aggregateStat']['ownersByCount']['nodes'])
+    else:
+        st.subheader("Random Collection Aggregate_stats")
+        variables = {'collectionAddresses': '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb', 'limit': 10}
+        result = run_query(query, variables)
+       
+        
+        col1, col2, col3 = st.columns(3)
+        col1.metric("floorPrice", result['data']['aggregateStat']['floorPrice'])
+        col2.metric("nftCount", result['data']['aggregateStat']['nftCount'])
+        col3.metric("ownerCount", result['data']['aggregateStat']['ownerCount'])
 
+        st.markdown("#")
+        st.subheader("SalesVolume")
+        st.write(result['data']['aggregateStat']['salesVolume'])
+
+
+        st.markdown("#")
+        st.subheader(f"Top {val} OwnersByCount")
+       
+
+        variables = {'collectionAddresses': '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb', 'limit': 10}
+        result = run_query(query, variables)
+        list_of_values = result['data']['aggregateStat']['ownersByCount']['nodes']
+        it = iter(list_of_values)
+        
+
+        col1, col2 = st.columns((2,2))
+        
+        for i in it:
+            with col1:
+                st.markdown("#")
+                st.write(i)
+            with col2:
+              try:
+                st.markdown("#")
+                st.write(next(it))
+              except:
+                pass
 
