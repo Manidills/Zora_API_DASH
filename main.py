@@ -12,6 +12,10 @@ import datetime
 
 from token_api import token_extract
 import pandas as pd
+from zora_auction import zora_data_auction
+
+from zora_collection import zora_data_1
+from zora_creator import zora_data_creator
 
 
 
@@ -24,13 +28,24 @@ st.set_page_config(
 new_title = '<p style="font-family: Tangerine; text-align: center; color:white; font-size: 70px;">ZORA API DASH</p>'
 st.markdown(new_title, unsafe_allow_html=True)
 
-with st.sidebar:
 
-    option = option_menu("ZORA Explorer", ['ZORA','Collection','AggStats','AggAtt','Sales','Token', 'Search','Mints', 'Rarity'], 
-        icons=['house'], menu_icon="cast", default_index=0)
+
+option = option_menu("ZORA Explorer", ['ZORA','Collection','AggStats','AggAtt','Sales','Token', 'Search','Mints', 'Rarity'], 
+    icons=['house'], menu_icon="cast", default_index=0, orientation="horizontal")
 
 if option == 'ZORA':
-    zora_data()
+    st.markdown('#')
+    option_zora = option_menu('ZORA Analytics',['ZORA','Zora_Auction', 'Zora_Creator', 'ZAGH'],
+    icons=['house'], menu_icon="cast", default_index=0, orientation="horizontal")
+    if option_zora == 'ZORA':
+        zora_data()
+    elif option_zora == 'Zora_Auction':
+         zora_data_auction()
+    elif option_zora == 'Zora_Creator':
+        zora_data_creator()
+    elif option_zora == 'ZAGH':
+        zora_data_1()
+   
 
 elif option == 'Collection':
    collection_extract()
