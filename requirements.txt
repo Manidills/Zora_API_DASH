@@ -1,0 +1,6 @@
+opencv_python==4.6.0.66
+pandas==1.4.0
+Plost==0.2.5
+requests==2.22.0
+streamlit==1.4.0
+streamlit_option_menu==0.3.2
