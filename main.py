@@ -2,6 +2,7 @@ from Zora_analytics import zora_data
 from aggregate_att import aggreagte_att_extract
 from aggregate_stats import aggreagte_stats_extract
 from collection_api import collection_extract
+from events import event_extract
 from mints import mint_extract
 from rarity import rarity
 from sales import sales_extract
@@ -30,22 +31,29 @@ st.markdown(new_title, unsafe_allow_html=True)
 
 
 
-option = option_menu("ZORA Explorer", ['ZORA','Collection','AggStats','AggAtt','Sales','Token', 'Search','Mints', 'Rarity'], 
+option = option_menu("ZORA Explorer", ['ZORA','Collection','AggStats','AggAtt','Sales','Token', 'Search'], 
     icons=['house'], menu_icon="cast", default_index=0, orientation="horizontal")
 
 if option == 'ZORA':
     st.markdown('#')
-    option_zora = option_menu('ZORA Analytics',['ZORA','Zora_Auction', 'Zora_Creator', 'ZAGH'],
-    icons=['house'], menu_icon="cast", default_index=0, orientation="horizontal")
-    if option_zora == 'ZORA':
+    st.markdown('<p style="font-family: Tangerine; text-align: center; color:white; font-size: 20px;">ZORA analytics that shows the basic insights on zora marketplaces, zora auction house, zora creator and zora api genesis hackathon</p>',unsafe_allow_html=True)
+
+    st.markdown('#')
+    with st.form("form1", clear_on_submit=False): 
+        option_zora = st.selectbox('SELECT ZORA PROTOCOL',('ZORA_MARKETPLACE','ZORA_AUCTION_HOUSE', 'ZORA_CREATOR', 'ZAGH'))
+        submit = st.form_submit_button("Submit") 
+    st.markdown("#")
+    if submit:
+        if option_zora == 'ZORA_MARKETPLACE':
+            zora_data()
+        elif option_zora == 'ZORA_AUCTION_HOUSE':
+            zora_data_auction()
+        elif option_zora == 'ZORA_CREATOR':
+            zora_data_creator()
+        elif option_zora == 'ZAGH':
+            zora_data_1()
+    else:
         zora_data()
-    elif option_zora == 'Zora_Auction':
-         zora_data_auction()
-    elif option_zora == 'Zora_Creator':
-        zora_data_creator()
-    elif option_zora == 'ZAGH':
-        zora_data_1()
-   
 
 elif option == 'Collection':
    collection_extract()
@@ -57,16 +65,22 @@ elif option == 'Sales':
     sales_extract()
 
 elif option == 'Token':
-    token_extract()
+    st.markdown('#')
+
+    option_token = st.radio('TOKEN ANALYTICS',('Token','Mints', 'Events', 'Rarity'))
+    st.markdown('#')
+    if option_token == 'Token':
+        token_extract()
+    elif option_token == 'Mints':
+        mint_extract()
+    elif option_token == 'Events':
+        event_extract()
+    elif option_token == 'Rarity':
+        rarity()
 
 elif option == 'Search':
     search_extract()
 
-elif option == 'Mints':
-    mint_extract()
-
 elif option == 'AggAtt':
     aggreagte_att_extract()
 
-elif option == 'Rarity':
-    rarity()

@@ -28,7 +28,11 @@ def zora_data_creator():
 
     st.markdown('#')
 
-   
+    st.subheader("Zora_creator_collections")
+    st.dataframe(table(data, 'Zora_creator_mints_by_collection'))
+    
+
+    st.markdown('#')
     col1, col2 = st.columns((2,2))
 
     with col1:
@@ -39,4 +43,6 @@ def zora_data_creator():
         pie_chart(data, 'Zora_creator_mints_by_collection', 'max_supply', 'category', 'Zora_creator_collection_max_supply')
 
 
-    
+    st.markdown("#")
+    st.subheader("Zora_creator_pricing")
+    st.dataframe(table(data,'Zora_creator_pricing'))

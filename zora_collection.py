@@ -27,6 +27,8 @@ def zora_data_1():
     st.markdown('#')
 
     line_chart(data, 'ZAGH_nft_minted_over_time', 'time', 'nft_minted', 'ZAGH_nft_minted_over_time')
+
+    st.markdown('#')
     pie_chart(data, 'ZAGH_top_minters', 'address', 'minted_amount', 'ZAGH_top_minters')
     pie_chart(data, 'ZAGH_nft_range',  'wallets','range', 'ZAGH_nft_range')
    
