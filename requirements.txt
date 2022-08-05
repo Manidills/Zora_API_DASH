@@ -7,3 +7,4 @@ streamlit_option_menu==0.3.2
 python_poppler==0.2.2
 gTTS==2.2.2
 Pillow==9.0.1
+git+https://github.com/nftstorage/python-client.git
