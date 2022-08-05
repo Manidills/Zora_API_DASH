@@ -4,3 +4,6 @@ Plost==0.2.5
 requests==2.22.0
 streamlit==1.4.0
 streamlit_option_menu==0.3.2
+python_poppler==0.2.2
+gTTS==2.2.2
+Pillow==9.0.1

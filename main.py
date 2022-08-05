@@ -1,6 +1,7 @@
 from Zora_analytics import zora_data
 from aggregate_att import aggreagte_att_extract
 from aggregate_stats import aggreagte_stats_extract
+from audiobook import audio_main
 from collection_api import collection_extract
 from events import event_extract
 from mints import mint_extract
@@ -67,7 +68,7 @@ elif option == 'Sales':
 elif option == 'Token':
     st.markdown('#')
 
-    option_token = st.radio('TOKEN ANALYTICS',('Token','Mints', 'Events', 'Rarity'))
+    option_token = st.radio('TOKEN ANALYTICS',('Token','Mints', 'Events', 'Rarity', 'AudioBook_Mint'))
     st.markdown('#')
     if option_token == 'Token':
         token_extract()
@@ -77,6 +78,8 @@ elif option == 'Token':
         event_extract()
     elif option_token == 'Rarity':
         rarity()
+    elif option_token == 'AudioBook_Mint':
+        audio_main()
 
 elif option == 'Search':
     search_extract()
