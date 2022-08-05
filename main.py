@@ -27,11 +27,19 @@ st.set_page_config(
     layout="wide"
 )
 
-new_title = '<p style="font-family: Tangerine; text-align: center; color:white; font-size: 70px;">ZORA API DASH</p>'
-st.markdown(new_title, unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1,1.5,1])
+
+with col1:
+    st.write(' ')
+
+with col2:
+    st.image("https://i.postimg.cc/3xccnZXr/text.gif", width=450)
+
+with col3:
+    st.write(' ')
 
 
-
+st.markdown("#")
 option = option_menu("ZORA Explorer", ['ZORA','Collection','AggStats','AggAtt','Sales','Token', 'Search'], 
     icons=['house'], menu_icon="cast", default_index=0, orientation="horizontal")
 
