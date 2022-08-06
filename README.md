@@ -19,8 +19,11 @@
 ZORA API DASH
 
 1. It support basic analytics charts for zora marketplaces, zora auction house, zora creator and zora api genesis hackathon.
+
 2. It provide simple user interface for ALL ZORA ENDPOINTS with data download option(CSV format) for further analysis. People dont need to code or understanding about graphql to get these data.
+
 3. Nft tracker option to check rarity and fast selling || most demanded NFTS based on collections.
+
 4. Easy user interface to convert pdf to audio and one click to mint as a NFT TOKEN with the help of ZORA, POLYGON and NFT STORGAE.
 ```
 
