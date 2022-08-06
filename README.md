@@ -70,7 +70,7 @@ ZORA API DASH
   
  # SIMPLE USER INTERFACE FOR THE ZORA APIS WITH DOWNLOAD OPTIONS
  
-    - aggregateAttributes API  ( Aggttt TAB )
+    - aggregateAttributes API  ( Aggttt TAB In Deployed URL)
     - aggregateStat API  (AggStat TAB )
     - collections API  (Collection TAB )
     - events API  ( Inside Token TAB )
