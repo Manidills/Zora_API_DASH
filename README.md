@@ -81,15 +81,15 @@ ZORA API DASH
     
  # NFT TRACKER
  
-    - Trending NFT and Rarity checker based on collections.
+    - Trending NFT and Rarity checker based on collections (Inside Token TAB)
     
  # AUDIOBOOK MINT
  
-    - Easy user interface to convert any pdf to audio format and mint as NFT using ZORA and POLYGON
+    - Easy user interface to convert any pdf to audio format and mint as NFT using ZORA and POLYGON ( Inside Token TAB )
     - NFT STORAGE is used to store PDF,audio data nft metadata and URL links
     
     
-## BUILD 
+## BUILD & ACKNOWLEDGE
 
   - ZORA
   - POLYGON
