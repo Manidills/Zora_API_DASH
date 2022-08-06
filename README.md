@@ -22,6 +22,16 @@ ZORA API DASH
 
 2. It provide simple user interface for ALL ZORA ENDPOINTS with data download option(CSV format) for further analysis. People dont need to code or understanding about graphql to get these data.
 
+     Now browse smoothly the zora api's with simple user interface
+        - aggregateAttributes API  
+        - aggregateStat API  
+        - collections API
+        - events API 
+        - mints API   
+        - sales API  
+        - search API  
+        - tokens API  
+
 3. Nft tracker option to check rarity and fast selling || most demanded NFTS based on collections.
 
 4. Easy user interface to convert pdf to audio and one click to mint as a NFT TOKEN with the help of ZORA, POLYGON and NFT STORGAE.
