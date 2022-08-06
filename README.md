@@ -10,11 +10,8 @@
 ## Problems
 
 * Based on my research ZORA Protocols lacks on analytics dashborads with proper maintenance.
-* 
 * No simple user interface and data download option for ZORA API (https://playground.api.zora.co/), people need to write code to download there require nft data and need to spend some time on graphql if they not familiar.
-* 
 * Finding the trending and rare ZORA NFT collection's are difficult.
-* 
 * People are more interested to listen audio book rather the reading now a days but finding difficulties on converting there documents || Ebooks into audio format and mint as a nft.
 
 ## Solution
